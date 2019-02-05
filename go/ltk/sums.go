@@ -7,31 +7,23 @@ import (
 	"io"
 	"os"
 	"strconv"
+	"strings"
 )
-
-type Node struct {
-	Name   string
-	Parent string
-}
-
-func exists(s string, arr []*Node) bool {
-	for _, v := range arr {
-		if s == v.Parent {
-			return true
-		}
-	}
-	return false
-}
 
 // AddRec takes a file as parameter and sums the numbers at each line, it also
 // accepts other files as input in the very same file and sums them up as well
-func AddRec(total *int, path string, history *[]*Node) error {
+func AddRec(total *int, path string, previouses ...string) error {
 	var subTotal, line int
 	if total == nil {
 		return errors.New("Nil total, cannot compute")
 	}
-	if history == nil {
-		history = &[]*Node{&Node{Name: path, Parent: ""}}
+	for _, previous := range previouses {
+		if previous == path {
+			return fmt.Errorf(
+				"Recursive loop: %s previously called %s",
+				path, strings.Join(previouses[1:len(previouses)], "->"),
+			)
+		}
 	}
 	b, err := os.Open(path)
 	if err != nil {
@@ -50,20 +42,9 @@ func AddRec(total *int, path string, history *[]*Node) error {
 		lStr := string(l)
 		v, err := strconv.Atoi(lStr)
 		if err != nil {
-			if lStr == path {
-				return fmt.
-					Errorf("Recursive loop in %s, self called at line %d", path, line+1)
+			if e := AddRec(total, lStr, append(previouses, path)...); e != nil {
+				return e
 			}
-			// if exists(lStr, history) {
-			// 	return fmt.Errorf(
-			// 		"File %s: recusrive loop, file %s already in the stack",
-			// 		path, lStr,
-			// 	)
-			// }
-			if e := AddRec(total, lStr, history); e != nil {
-				return fmt.Errorf("File %s: %s", path, e)
-			}
-			*history = append(*history, &Node{Name: lStr, Parent: path})
 		}
 		subTotal += v
 		*total += v

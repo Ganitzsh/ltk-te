@@ -1,0 +1,6 @@
+test_set_loop_simple/e.txt
+1
+2
+3
+4
+5
