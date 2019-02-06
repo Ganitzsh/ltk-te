@@ -63,6 +63,11 @@ To run the tests you can use the Makefile:
     Subtotal for file <some_path>/tests/test_set/a.txt is 78
     --- PASS: TestAddRec (0.00s)
         sums_test.go:17: Total is 221
+    === RUN   TestAddRecSimple
+    Subtotal for file <some_path>/tests/test_set_simple/b.txt is 5
+    Subtotal for file <some_path>/tests/test_set_simple/a.txt is 5
+    --- PASS: TestAddRecSimple (0.00s)
+        sums_test.go:28: Total is 10
     === RUN   TestAddRecLoopSimple
     --- PASS: TestAddRecLoopSimple (0.00s)
         sums_test.go:24: Recursive loop: <some_path>/tests/test_set_loop_simple/a.txt previously called
