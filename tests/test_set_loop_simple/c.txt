@@ -1,4 +1,4 @@
-../tests/test_set_loop_simple/e.txt
+tests/test_set_simple/e.txt
 1
 2
 3

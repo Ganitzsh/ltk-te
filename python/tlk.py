@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
 
 class RecursiveLoopException(Exception):
-    """Recursive loop"""
+    def __init__(self, message='Recursive loop', file=None):
+        self.message = message
+        self.file = file
+    def __str__(self):
+        return str(self.message)
     pass
 
 def isNumber(s):
@@ -12,9 +16,9 @@ def isNumber(s):
         return False
 
 def sum(path, previouses=[]):
+    total = 0
     for prev in previouses:
-        if prev is path:
-            print(previouses)
+        if prev == path:
             raise RecursiveLoopException
     subtotal = 0
     with open(path, 'r') as f:
@@ -27,5 +31,6 @@ def sum(path, previouses=[]):
                 subtotal += val
             else:
                 previouses.append(path)
-                sum(line, previouses)
-    print('Subtotal for {:s} is {:d} and Total is {:d}'.format(path, subtotal, total))
+                total += sum(line, previouses)
+    print('Subtotal for {:s} is {:d}'.format(path, subtotal))
+    return total + subtotal

@@ -2,7 +2,7 @@
 
 import sys;
 
-from tlk import sum;
+from tlk import sum, RecursiveLoopException;
 
 def printUsage():
     print("""
@@ -19,12 +19,12 @@ def main():
     if len(sys.argv) is 1 or len(sys.argv) > 2:
         printUsage()
         return
-    total = 0
     try:
-        sum(total, sys.argv[1])
-    except Exception as e:
-        print('Something went wrong')
-    print('Total is {:d}'.format(total))
+        print('Total is {:d}'.format(sum(sys.argv[1])))
+    except RecursiveLoopException as e:
+        print(e)
+    except FileNotFoundError as e:
+        print(e)
 
 if __name__ == '__main__':
     main()

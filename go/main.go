@@ -5,7 +5,6 @@ import (
 	"os"
 
 	"./ltk"
-	"github.com/davecgh/go-spew/spew"
 )
 
 func displayUsage() {
@@ -20,15 +19,14 @@ number`)
 
 func main() {
 	var total int
-	stack := []*ltk.Node{}
 	args := os.Args
 	if len(args) == 1 || len(args) > 2 {
 		displayUsage()
 		return
 	}
-	if err := ltk.AddRec(&total, args[1], &stack); err != nil {
+	total, err := ltk.AddRec(args[1])
+	if err != nil {
 		panic(err)
 	}
-	spew.Dump(stack)
 	fmt.Printf("Full total is %d\n", total)
 }

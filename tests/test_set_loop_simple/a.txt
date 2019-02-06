@@ -4,11 +4,11 @@
 4
 5
 6
-../tests/test_set_loop_simple/a.txt
+tests/test_set_simple/a.txt
 7
 8
 9
 10
 11
-../tests/test_set_loop_simple/c.txt
+tests/test_set_simple/c.txt
 12
