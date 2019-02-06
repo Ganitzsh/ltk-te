@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 class RecursiveLoopException(Exception):
     def __init__(self, message='Recursive loop', file=None):
         self.message = message
@@ -30,7 +28,6 @@ def sum(path, previouses=[]):
                 val = int(line)
                 subtotal += val
             else:
-                previouses.append(path)
-                total += sum(line, previouses)
+                total += sum(line, previouses + [path])
     print('Subtotal for {:s} is {:d}'.format(path, subtotal))
     return total + subtotal

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
-import sys;
+import sys
 
-from tlk import sum, RecursiveLoopException;
+from tlk import sum, RecursiveLoopException
 
 def printUsage():
     print("""

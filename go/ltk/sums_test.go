@@ -17,6 +17,17 @@ func TestAddRec(t *testing.T) {
 	t.Logf("Total is %d\n", total)
 }
 
+func TestAddRecSimple(t *testing.T) {
+	total, err := ltk.AddRec("tests/test_set_simple/a.txt")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if total != 10 {
+		t.Fatalf("Invalid total, expected 10 got %d", total)
+	}
+	t.Logf("Total is %d\n", total)
+}
+
 func TestAddRecLoopSimple(t *testing.T) {
 	if _, err := ltk.AddRec("tests/test_set_loop_simple/a.txt"); err == nil {
 		t.Fatal("Expected an error")
