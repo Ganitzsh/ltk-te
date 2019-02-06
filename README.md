@@ -25,10 +25,10 @@ import "tlk"
 
 func main() {
   total, err := ltk.AddRec(args[1])
-	if err != nil {
-		panic(err)
-	}
-	fmt.Printf("Full total is %d\n", total)
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("Full total is %d\n", total)
 }
 ```
 
