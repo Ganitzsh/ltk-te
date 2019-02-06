@@ -4,7 +4,7 @@
 1
 1
 1
-test_set_loop_complex/a.txt
+../tests/test_set_loop_complex/a.txt
 1
 1
 1
